@@ -1,0 +1,11 @@
+.container-item-categories {
+  background-color: white;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.05);
+  height: 80vh;
+  overflow: auto;
+  width: 310px;
+}
+
+.category-item label {
+  display: flex;
+}
