@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { getCategories } from '../services/api';
+import './css/CategoriesFilter.css';
 
 export default class CategoriesFilter extends React.Component {
   constructor() {
@@ -17,6 +19,7 @@ export default class CategoriesFilter extends React.Component {
 
   render() {
     const { categories } = this.state;
+    const { handleChangeCategory } = this.props;
     return (
       <div className="container-item-categories">
         {categories.map((item) => (
@@ -28,6 +31,9 @@ export default class CategoriesFilter extends React.Component {
                 name="categories-filter"
                 value={ item.name }
                 id={ item.id }
+                onChange={ () => {
+                  handleChangeCategory(item.id);
+                } }
               />
             </label>
           </div>
@@ -36,3 +42,7 @@ export default class CategoriesFilter extends React.Component {
     );
   }
 }
+
+CategoriesFilter.propTypes = {
+  handleChangeCategory: PropTypes.func.isRequired,
+};
