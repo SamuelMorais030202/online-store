@@ -17,7 +17,6 @@ export default class Home extends Component {
     this.setState({
       productsFiltered: [...response.results],
     });
-    // console.log(response.results);
   };
 
   handleChangeCategory = async (categoryId) => {

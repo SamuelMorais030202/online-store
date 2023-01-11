@@ -1,0 +1,46 @@
+.cart-products {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  justify-content: center;
+  position: relative;
+  width: 100vw;
+}
+
+.back-button {
+  background-color: transparent;
+  border: none;
+  color: #2fc18c;
+  cursor: pointer;
+  display: flex;
+  font-family: Epilogue , monospace;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  gap: 10px;
+  left: 2vh;
+  line-height: 16px;
+  padding: 5px;
+  position: absolute;
+  top: 2vh;
+}
+
+.back-button:hover {
+  left: 1.7vh;
+  top: 1.7vh;
+  zoom: 1.1;
+}
+
+.cart-message {
+  color: #31c28d;
+  font-family: Epilogue , monospace;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.055em;
+  line-height: 31px;
+  text-align: center;
+  text-transform: uppercase;
+
+}
