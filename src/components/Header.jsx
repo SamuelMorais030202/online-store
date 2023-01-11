@@ -28,6 +28,7 @@ export default class Header extends Component {
             data-testid="query-input"
             onChange={ this.handleChange }
             value={ query }
+            placeholder="Digite o que você busca"
           />
           <button
             type="button"
@@ -38,7 +39,7 @@ export default class Header extends Component {
           </button>
         </div>
         <img src={ logoImage } alt="Logo" className="logo-image" />
-        <Link to="/rua" className="cart-link">
+        <Link to="/cartshop" className="cart-link" data-testid="shopping-cart-button">
           <img src={ cartImage } alt="Cart-Icon" />
         </Link>
       </header>
