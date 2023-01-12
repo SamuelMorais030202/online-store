@@ -51,7 +51,11 @@ export default class CartShop extends Component {
             savedProduct && savedProduct.length > 0 ? (
               <>
                 <div className="container-cart">
-                  <CartList data={ savedProduct } funcCalculate={ this.calculateTotal } />
+                  <CartList
+                    data={ savedProduct }
+                    funcCalculate={ this.calculateTotal }
+                    showQuantity
+                  />
                 </div>
                 <div className="cart-total">
                   <h1 className="cart-total-title">Valor total da compra:</h1>
