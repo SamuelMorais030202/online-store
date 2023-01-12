@@ -38,7 +38,9 @@ export default class Header extends Component {
             <img src={ searchImage } alt="" />
           </button>
         </div>
-        <img src={ logoImage } alt="Logo" className="logo-image" />
+        <Link to="/">
+          <img src={ logoImage } alt="Logo" className="logo-image" />
+        </Link>
         <Link to="/cartshop" className="cart-link" data-testid="shopping-cart-button">
           <img src={ cartImage } alt="Cart-Icon" />
         </Link>

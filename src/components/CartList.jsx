@@ -13,6 +13,7 @@ export default class CartList extends Component {
   }
 
   updateQuantity = (value, id) => {
+    const { funcCalculate } = this.props;
     const savedProducts = JSON.parse(localStorage.getItem('saveProduct'));
     const prod = savedProducts.find((product) => product.id === id);
     if (value) {
@@ -23,20 +24,26 @@ export default class CartList extends Component {
     localStorage.setItem('saveProduct', JSON.stringify(savedProducts));
     this.setState({
       productList: savedProducts,
+    }, () => {
+      funcCalculate(savedProducts);
     });
   };
 
   deleteProduct = (id) => {
+    const { funcCalculate } = this.props;
     const savedProducts = JSON.parse(localStorage.getItem('saveProduct'));
     const newProducts = savedProducts.filter((product) => product.id !== id);
     localStorage.setItem('saveProduct', JSON.stringify(newProducts));
     this.setState({
       productList: newProducts,
+    }, () => {
+      funcCalculate(newProducts);
     });
   };
 
   render() {
     const { productList } = this.state;
+    const { showQuantity } = this.props;
     return (
       <div className="cart-list">
         <h1>Carrinho de Compras</h1>
@@ -58,36 +65,39 @@ export default class CartList extends Component {
               >
                 { title }
               </p>
-              <div
-                className="container-quantity"
-              >
-                <button
-                  type="button"
-                  className="button-quantity"
-                  data-testid="product-decrease-quantity"
-                  onClick={ () => {
-                    this.updateQuantity(false, id);
-                  } }
+
+              { showQuantity ? (
+                <div
+                  className="container-quantity"
                 >
-                  -
-                </button>
-                <p
-                  className="quantity-product-saved"
-                  data-testid="shopping-cart-product-quantity"
-                >
-                  { quantity }
-                </p>
-                <button
-                  type="button"
-                  className="button-quantity"
-                  data-testid="product-increase-quantity"
-                  onClick={ () => {
-                    this.updateQuantity(true, id);
-                  } }
-                >
-                  +
-                </button>
-              </div>
+                  <button
+                    type="button"
+                    className="button-quantity"
+                    data-testid="product-decrease-quantity"
+                    onClick={ () => {
+                      this.updateQuantity(false, id);
+                    } }
+                  >
+                    -
+                  </button>
+                  <p
+                    className="quantity-product-saved"
+                    data-testid="shopping-cart-product-quantity"
+                  >
+                    {quantity}
+                  </p>
+                  <button
+                    type="button"
+                    className="button-quantity"
+                    data-testid="product-increase-quantity"
+                    onClick={ () => {
+                      this.updateQuantity(true, id);
+                    } }
+                  >
+                    +
+                  </button>
+                </div>
+              ) : null }
               <p className="price-product-saved">
                 R$
                 { ((Math.round(price * 100) / 100).toFixed(2)).replace('.', ',') }
@@ -102,4 +112,6 @@ export default class CartList extends Component {
 
 CartList.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  funcCalculate: PropTypes.func.isRequired,
+  showQuantity: PropTypes.bool.isRequired,
 };
