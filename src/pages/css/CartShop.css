@@ -43,5 +43,18 @@
   line-height: 31px;
   text-align: center;
   text-transform: uppercase;
+}
 
+.cart-total {
+  background-color: white;
+  box-sizing: border-box;
+  height: 80vh;
+  width: 50vw;
+}
+
+.cart-shop {
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  width: 100vw;
 }

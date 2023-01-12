@@ -29,18 +29,23 @@ export default class CartShop extends Component {
               Voltar
             </button>
           </Link>
-          {
-            savedProduct && savedProduct.length > 0 ? (
-              <CartList data={ savedProduct } />
-            ) : (
-              <h1
-                data-testid="shopping-cart-empty-message"
-                className="cart-message"
-              >
-                Seu carrinho está vazio
-              </h1>
-            )
-          }
+          <div className="cart-shop">
+            {
+              savedProduct && savedProduct.length > 0 ? (
+                <CartList data={ savedProduct } />
+              ) : (
+                <h1
+                  data-testid="shopping-cart-empty-message"
+                  className="cart-message"
+                >
+                  Seu carrinho está vazio
+                </h1>
+              )
+            }
+            <div className="cart-total">
+              asdasdasda
+            </div>
+          </div>
         </div>
       </div>
     );
