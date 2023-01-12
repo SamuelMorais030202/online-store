@@ -13,9 +13,13 @@ export default class Home extends Component {
 
   handleSearch = async (textSearch) => {
     const { categorySelected } = this.state;
-    const response = await getProductsFromCategoryAndQuery(categorySelected, textSearch);
+    const { results } = await getProductsFromCategoryAndQuery(
+      categorySelected,
+      textSearch,
+    );
+    results.sort((a, b) => a.id > b.id);
     this.setState({
-      productsFiltered: [...response.results],
+      productsFiltered: [...results],
     });
   };
 
@@ -23,9 +27,8 @@ export default class Home extends Component {
     this.setState({
       categorySelected: categoryId,
     });
-
     const { results } = await getProductByCategory(categoryId);
-
+    results.sort((a, b) => a.id > b.id);
     this.setState({
       productsFiltered: [...results],
     });

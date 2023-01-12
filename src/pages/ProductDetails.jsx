@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getProductById } from '../services/api';
 import Header from '../components/Header';
+import RatingForm from '../components/RatingForm';
 
 export default class ProductDetails extends Component {
   state = {
@@ -27,8 +28,9 @@ export default class ProductDetails extends Component {
 
   render() {
     const { productData: { title, price, thumbnail } } = this.state;
+    const { match: { params: { id } } } = this.props;
     return (
-      <div>
+      <div className="product-details">
         <Header />
         <p data-testid="product-detail-name">{ title }</p>
         <img data-testid="product-detail-image" src={ thumbnail } alt={ title } />
@@ -43,6 +45,7 @@ export default class ProductDetails extends Component {
         >
           Adicionar ao Carrinho
         </button>
+        <RatingForm id={ id } />
       </div>
     );
   }
