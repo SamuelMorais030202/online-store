@@ -30,7 +30,7 @@ export default class CartShop extends Component {
             </button>
           </Link>
           {
-            savedProduct ? (
+            savedProduct && savedProduct.length > 0 ? (
               <CartList data={ savedProduct } />
             ) : (
               <h1
@@ -41,7 +41,6 @@ export default class CartShop extends Component {
               </h1>
             )
           }
-
         </div>
       </div>
     );
