@@ -34,7 +34,7 @@ export default class Home extends Component {
           <CategoriesFilter handleChangeCategory={ this.handleChangeCategory } />
           {
             productsFiltered === undefined ? (
-              <div>
+              <div className="home-results">
                 <h1>VOCÊ AINDA NÃO REALIZOU UMA BUSCA</h1>
                 <p data-testid="home-initial-message">
                   Digite algum termo de pesquisa ou escolha uma categoria.
@@ -44,7 +44,7 @@ export default class Home extends Component {
           }
           {
             productsFiltered && productsFiltered.length === 0 ? (
-              <div>
+              <div className="home-results">
                 <h1>Nenhum produto foi encontrado</h1>
                 <p data-testid="home-initial-message">
                   Digite outro termo de pesquisa ou escolha uma categoria.
@@ -54,9 +54,13 @@ export default class Home extends Component {
           }
           {
             productsFiltered && productsFiltered.length > 0 ? (
-              productsFiltered.map((product) => (
-                <ProductCard key={ product.id } data={ product } />
-              ))
+              <div className="home-cards">
+                {
+                  productsFiltered.map((product) => (
+                    <ProductCard key={ product.id } data={ product } />
+                  ))
+                }
+              </div>
             ) : null
           }
         </main>

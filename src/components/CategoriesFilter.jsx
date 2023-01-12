@@ -22,6 +22,8 @@ export default class CategoriesFilter extends React.Component {
     const { handleChangeCategory } = this.props;
     return (
       <div className="container-item-categories">
+        <h1>Categorias</h1>
+        <hr />
         {categories.map((item) => (
           <div key={ item.id } className="category-item">
             <label data-testid="category" htmlFor={ item.id }>

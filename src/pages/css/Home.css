@@ -3,13 +3,55 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 100vh;
   margin: 0;
   padding: 0;
   width: 100%;
 }
 
 .home-container {
-  align-items: center;
   display: flex;
+}
+
+.home-results {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  justify-content: center;
+  width: calc(100vw - 400px);
+}
+
+.home-results h1, .home-results p {
+  max-width: 350px;
+}
+
+.home-results h1 {
+  color: #31c28d;
+  font-family: Epilogue , monospace;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.055em;
+  line-height: 31px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.home-results p {
+  color: #94979d;
+  font-family: Epilogue , monospace;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+}
+
+.home-cards {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: calc(100vw - 400px);
 }
