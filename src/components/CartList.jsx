@@ -7,7 +7,7 @@ export default class CartList extends Component {
     return (
       <div>
         {
-          data.map(({ id, title, price, thumbnail }) => (
+          data.map(({ id, title, price, thumbnail, quantity }) => (
             <div key={ id }>
               <img src={ thumbnail } alt="Produto Imagem" />
               <p
@@ -16,14 +16,11 @@ export default class CartList extends Component {
               >
                 { title }
               </p>
-              <div className="row-saved">
-                <p className="real-symbol-saved">
-                  R$
-                </p>
-                <p className="price-product-saved">
-                  { ((Math.round(price * 100) / 100).toFixed(2)).replace('.', ',') }
-                </p>
-              </div>
+              <p data-testid="shopping-cart-product-quantity">{ quantity }</p>
+              <p className="price-product-saved">
+                R$
+                { ((Math.round(price * 100) / 100).toFixed(2)).replace('.', ',') }
+              </p>
             </div>
           ))
         }
@@ -33,5 +30,5 @@ export default class CartList extends Component {
 }
 
 CartList.propTypes = {
-  data: PropTypes.arrayOf.isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };

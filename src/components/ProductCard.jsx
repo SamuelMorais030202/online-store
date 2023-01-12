@@ -10,7 +10,7 @@ export default class ProductCard extends Component {
     const saveProduct = localStorage.getItem('saveProduct');
 
     const arrayProduct = saveProduct ? JSON.parse(saveProduct) : [];
-    arrayProduct.push({ title, thumbnail, price, id });
+    arrayProduct.push({ title, thumbnail, price, id, quantity: 1 });
     localStorage.setItem('saveProduct', JSON.stringify(arrayProduct));
     // return localStorage.getItem('saveProduct');
     /* console.log(localStorage.getItem('saveProduct')); */
@@ -32,7 +32,6 @@ export default class ProductCard extends Component {
                 { ((Math.round(price * 100) / 100).toFixed(2)).replace('.', ',') }
               </p>
             </div>
-
           </div>
         </Link>
         <button
