@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CategoriesFilter from '../components/CategoriesFilter';
 import Header from '../components/Header';
 import './css/Home.css';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import { getProductsFromCategoryAndQuery, getProductByCategory } from '../services/api';
 import ProductCard from '../components/ProductCard';
 
 export default class Home extends Component {
@@ -23,15 +23,23 @@ export default class Home extends Component {
     this.setState({
       categorySelected: categoryId,
     });
+
+    const { results } = await getProductByCategory(categoryId);
+
+    this.setState({
+      productsFiltered: [...results],
+    });
   };
 
   render() {
-    const { productsFiltered } = this.state;
+    const { productsFiltered, categorizedProducts } = this.state;
     return (
       <div className="home-principal">
         <Header handleSearch={ this.handleSearch } />
         <main className="home-container">
-          <CategoriesFilter handleChangeCategory={ this.handleChangeCategory } />
+          <CategoriesFilter
+            handleChangeCategory={ this.handleChangeCategory }
+          />
           {
             productsFiltered === undefined ? (
               <div>
@@ -55,6 +63,13 @@ export default class Home extends Component {
           {
             productsFiltered && productsFiltered.length > 0 ? (
               productsFiltered.map((product) => (
+                <ProductCard key={ product.id } data={ product } />
+              ))
+            ) : null
+          }
+          {
+            categorizedProducts > 0 && !productsFiltered ? (
+              categorizedProducts.map((product) => (
                 <ProductCard key={ product.id } data={ product } />
               ))
             ) : null
