@@ -1,12 +1,22 @@
-.cart-products {
+* {
+  padding: 0;
+}
+
+.cart-shop {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.cart-resume {
   align-items: center;
   background-color: #ececec;
   display: flex;
   flex-direction: column;
-  height: 80vh;
   justify-content: center;
   position: relative;
-  width: 100vw;
+  width: 100%;
 }
 
 .back-button {
@@ -25,6 +35,7 @@
   padding: 5px;
   position: absolute;
   top: 2vh;
+  z-index: 1;
 }
 
 .back-button:hover {
@@ -46,15 +57,89 @@
 }
 
 .cart-total {
+  align-items: center;
   background-color: white;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   height: 80vh;
-  width: 50vw;
+  justify-content: center;
+  width: 100%;
 }
 
-.cart-shop {
+.container-cart {
+  align-items: center;
   box-sizing: border-box;
   display: flex;
   height: 100%;
-  width: 100vw;
+  justify-content: center;
+  padding: 12vh 10vw;
+  position: relative;
+  width: 100%;
+  z-index: 0;
+}
+
+.cart-total-title {
+  color: black;
+  font-family: Epilogue , sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 25px;
+  text-align: center;
+}
+
+.cart-total-price {
+  color: black;
+  font-family: Epilogue , sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 25px;
+  text-align: center;
+}
+
+.button-cart-total {
+  background-color: #31c28d;
+  border: none;
+  color: white;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 15px;
+  text-align: center;
+}
+
+.button-cart-total:hover {
+  background-color: #66c09f;
+  cursor: pointer;
+  zoom: 1.01;
+}
+
+.button-cart-total:active {
+  background-color: #31c28d;
+}
+
+@media ( min-width : 1180px ) {
+
+  .cart-shop {
+    height: 100vh;
+  }
+
+  .cart-resume {
+    flex-direction: row;
+    height: 80vh;
+  }
+
+  .cart-total {
+    width: 50vw;
+  }
+
+  .container-cart {
+    padding: 6vh 4vw;
+    width: 50vw;
+  }
+
 }
