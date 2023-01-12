@@ -31,6 +31,8 @@ export default class CartShop extends Component {
     this.setState({
       total: (currentTotal).toFixed(2),
     });
+
+    localStorage.setItem('totalBuy', currentTotal);
   };
 
   render() {
@@ -57,9 +59,15 @@ export default class CartShop extends Component {
                     R$
                     { total }
                   </h2>
-                  <button type="button" className="button-cart-total">
-                    Finalizar compra
-                  </button>
+                  <Link to="/checkout">
+                    <button
+                      type="button"
+                      className="button-cart-total"
+                      data-testid="checkout-products"
+                    >
+                      Finalizar compra
+                    </button>
+                  </Link>
                 </div>
               </>
             ) : (

@@ -43,6 +43,7 @@ export default class CartList extends Component {
 
   render() {
     const { productList } = this.state;
+    const { showQuantity } = this.props;
     return (
       <div className="cart-list">
         <h1>Carrinho de Compras</h1>
@@ -64,16 +65,18 @@ export default class CartList extends Component {
               >
                 { title }
               </p>
-              <div
+
+              { showQuantity ? (
+                <div
                 className="container-quantity"
-              >
+                >
                 <button
                   type="button"
                   className="button-quantity"
                   data-testid="product-decrease-quantity"
-                  onClick={ () => {
+                  onClick={() => {
                     this.updateQuantity(false, id);
-                  } }
+                  }}
                 >
                   -
                 </button>
@@ -81,19 +84,19 @@ export default class CartList extends Component {
                   className="quantity-product-saved"
                   data-testid="shopping-cart-product-quantity"
                 >
-                  { quantity }
+                  {quantity}
                 </p>
                 <button
                   type="button"
                   className="button-quantity"
                   data-testid="product-increase-quantity"
-                  onClick={ () => {
+                  onClick={() => {
                     this.updateQuantity(true, id);
-                  } }
+                  }}
                 >
                   +
                 </button>
-              </div>
+              </div>) : null }
               <p className="price-product-saved">
                 R$
                 { ((Math.round(price * 100) / 100).toFixed(2)).replace('.', ',') }
