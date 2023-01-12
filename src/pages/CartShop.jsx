@@ -15,40 +15,62 @@ export default class CartShop extends Component {
     const receiveData = localStorage.getItem('saveProduct');
     this.setState({
       savedProduct: receiveData ? JSON.parse(receiveData) : [],
+    }, () => {
+      const { savedProduct } = this.state;
+      this.calculateTotal(savedProduct);
     });
   }
 
-  calculateTotal = (savedProducts) => {
-    return savedProducts;
-  }
+  calculateTotal = (productList) => {
+    let currentTotal = 0;
+
+    productList.forEach(({ quantity, price }) => {
+      currentTotal = Math.round(((quantity * price) + currentTotal) * 100) / 100;
+    });
+
+    this.setState({
+      total: (currentTotal).toFixed(2),
+    });
+  };
 
   render() {
-    const { savedProduct } = this.state;
+    const { savedProduct, total } = this.state;
     return (
-      <div className="container-cart">
+      <div className="cart-shop">
         <Header />
-        <div className="cart-products">
+        <div className="cart-resume">
           <Link to="/" className="cart-voltar">
             <button type="button" className="back-button">
               <img src={ backImage } alt="" />
               Voltar
             </button>
           </Link>
-          <div className="cart-shop">
-            {
-              savedProduct && savedProduct.length > 0 ? (
-                <CartList data={ savedProduct } />
-              ) : (
-                <h1
-                  data-testid="shopping-cart-empty-message"
-                  className="cart-message"
-                >
-                  Seu carrinho está vazio
-                </h1>
-              )
-            }
-            <button></button>
-          </div>
+          {
+            savedProduct && savedProduct.length > 0 ? (
+              <>
+                <div className="container-cart">
+                  <CartList data={ savedProduct } funcCalculate={ this.calculateTotal } />
+                </div>
+                <div className="cart-total">
+                  <h1 className="cart-total-title">Valor total da compra:</h1>
+                  <h2 className="cart-total-price">
+                    R$
+                    { total }
+                  </h2>
+                  <button type="button" className="button-cart-total">
+                    Finalizar compra
+                  </button>
+                </div>
+              </>
+            ) : (
+              <h1
+                data-testid="shopping-cart-empty-message"
+                className="cart-message"
+              >
+                Seu carrinho está vazio
+              </h1>
+            )
+          }
         </div>
       </div>
     );
