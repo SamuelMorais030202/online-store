@@ -41,7 +41,6 @@ export default class CartShop extends Component {
               </h1>
             )
           }
-
         </div>
       </div>
     );
