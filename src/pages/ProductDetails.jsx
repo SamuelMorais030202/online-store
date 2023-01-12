@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getProductById } from '../services/api';
+import Header from '../components/Header';
 
 export default class ProductDetails extends Component {
   state = {
@@ -16,6 +17,11 @@ export default class ProductDetails extends Component {
 
   handleClick = () => {
     const { history } = this.props;
+    const { productData: { title, price, thumbnail, id } } = this.state;
+    const saveProduct = localStorage.getItem('saveProduct');
+    const arrayProduct = saveProduct ? JSON.parse(saveProduct) : [];
+    arrayProduct.push({ title, thumbnail, price, id, quantity: 1 });
+    localStorage.setItem('saveProduct', JSON.stringify(arrayProduct));
     history.push('/cartshop');
   };
 
@@ -23,6 +29,7 @@ export default class ProductDetails extends Component {
     const { productData: { title, price, thumbnail } } = this.state;
     return (
       <div>
+        <Header />
         <p data-testid="product-detail-name">{ title }</p>
         <img data-testid="product-detail-image" src={ thumbnail } alt={ title } />
         <p data-testid="product-detail-price">
@@ -31,7 +38,7 @@ export default class ProductDetails extends Component {
         </p>
         <button
           type="button"
-          data-testid="shopping-cart-button"
+          data-testid="product-detail-add-to-cart"
           onClick={ this.handleClick }
         >
           Adicionar ao Carrinho
