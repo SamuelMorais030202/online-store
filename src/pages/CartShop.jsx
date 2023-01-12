@@ -8,6 +8,7 @@ import './css/CartShop.css';
 export default class CartShop extends Component {
   state = {
     savedProduct: [],
+    total: 0,
   };
 
   componentDidMount() {
@@ -15,6 +16,10 @@ export default class CartShop extends Component {
     this.setState({
       savedProduct: receiveData ? JSON.parse(receiveData) : [],
     });
+  }
+
+  calculateTotal = (savedProducts) => {
+    return savedProducts;
   }
 
   render() {
@@ -42,9 +47,7 @@ export default class CartShop extends Component {
                 </h1>
               )
             }
-            <div className="cart-total">
-              asdasdasda
-            </div>
+            <button></button>
           </div>
         </div>
       </div>
