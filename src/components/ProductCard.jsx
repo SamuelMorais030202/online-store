@@ -12,8 +12,6 @@ export default class ProductCard extends Component {
     const arrayProduct = saveProduct ? JSON.parse(saveProduct) : [];
     arrayProduct.push({ title, thumbnail, price, id, quantity: 1 });
     localStorage.setItem('saveProduct', JSON.stringify(arrayProduct));
-    // return localStorage.getItem('saveProduct');
-    /* console.log(localStorage.getItem('saveProduct')); */
   };
 
   render() {
