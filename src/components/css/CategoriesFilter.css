@@ -1,11 +1,29 @@
 .container-item-categories {
   background-color: white;
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.05);
-  height: 80vh;
-  overflow: auto;
-  width: 310px;
+  box-sizing: border-box;
+  padding: 35px;
+  width: 400px;
 }
 
 .category-item label {
   display: flex;
+}
+
+.container-item-categories h1 {
+  color: black;
+  font-family: Epilogue , sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  text-align: start;
+}
+
+.container-item-categories p {
+  color: #444955;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
 }

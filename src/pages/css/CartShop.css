@@ -1,5 +1,6 @@
 .cart-products {
   align-items: center;
+  background-color: #ececec;
   display: flex;
   flex-direction: column;
   height: 80vh;
