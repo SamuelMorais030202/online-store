@@ -41,7 +41,7 @@ export default class Home extends Component {
       categorySelected: categoryId,
     });
     const { results } = await getProductByCategory(categoryId);
-    // const productsFiltered = await this.searchProductDetail(results);
+    console.log(results);
     this.setState({
       productsFiltered: [...results],
     });

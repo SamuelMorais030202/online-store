@@ -7,7 +7,14 @@ export default class ProductCard extends Component {
   render() {
     const {
       data: {
-        title, thumbnail, price, id, available_quantity: availableQuantity,
+        title,
+        thumbnail,
+        price,
+        id,
+        available_quantity: availableQuantity,
+        shipping: {
+          free_shipping: freeShipping,
+        },
       },
       saveLocalStorage,
     } = this.props;
@@ -15,6 +22,9 @@ export default class ProductCard extends Component {
       <div>
         <div data-testid="product" className="product-card">
           <Link to={ `/product/${id}` } data-testid="product-detail-link">
+            {
+              freeShipping && <p data-testid="free-shipping">Frete Grátis</p>
+            }
             <img
               src={ thumbnail }
               alt="Produto Imagem"
