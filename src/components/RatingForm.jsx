@@ -76,38 +76,42 @@ export default class RatingForm extends Component {
     const { rating, ratingInvalid, email, message, rates } = this.state;
     return (
       <div className="rating-form">
-        <h1>Avaliações</h1>
         <form>
-          <input
-            type="email"
-            placeholder="Email"
-            data-testid="product-detail-email"
-            name="email"
-            value={ email }
-            onChange={ this.handleChange }
-          />
-          {
-            this.RATINGS.map((value) => (
-              <button
-                type="button"
-                key={ `rating-value-${value}` }
-                className="rating-button"
-                data-testid={ `${value + 1}-rating` }
-                onClick={ () => { this.handleRate(value); } }
-              >
-                <img
-                  src={ rating > value ? ratingImgTrue : ratingImgFalse }
-                  alt="Avaliação"
-                />
-              </button>
-            ))
-          }
+          <h1>Avaliações</h1>
+          <div className="row">
+            <input
+              type="email"
+              placeholder="Email"
+              data-testid="product-detail-email"
+              className="input-email-rating"
+              name="email"
+              value={ email }
+              onChange={ this.handleChange }
+            />
+            {
+              this.RATINGS.map((value) => (
+                <button
+                  type="button"
+                  key={ `rating-value-${value}` }
+                  className="rating-button"
+                  data-testid={ `${value + 1}-rating` }
+                  onClick={ () => { this.handleRate(value); } }
+                >
+                  <img
+                    src={ rating > value ? ratingImgTrue : ratingImgFalse }
+                    alt="Avaliação"
+                  />
+                </button>
+              ))
+            }
+          </div>
           <textarea
             data-testid="product-detail-evaluation"
             id=""
             cols="30"
             rows="10"
             placeholder="Mensagem (opcional)"
+            className="input-text-rating"
             name="message"
             value={ message }
             onChange={ this.handleChange }
@@ -126,12 +130,21 @@ export default class RatingForm extends Component {
           }
         </form>
         <div className="ratings">
-          ratings
           {
             rates.map((rate, index) => (
-              <div key={ index }>
-                <p data-testid="review-card-email">{ rate.email }</p>
-                <p data-testid="review-card-rating">{ rate.rating }</p>
+              <div
+                key={ `rating-list-${index}` }
+                className="rating-card"
+              >
+                <div className="row">
+                  <h1
+                    data-testid="review-card-email"
+                    className="rating-card-email"
+                  >
+                    { rate.email }
+                  </h1>
+                  <p data-testid="review-card-rating">{ rate.rating }</p>
+                </div>
                 <p data-testid="review-card-evaluation">{ rate.text }</p>
               </div>
             ))

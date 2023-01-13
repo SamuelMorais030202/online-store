@@ -1,3 +1,85 @@
+.rating-form {
+  background-color: #e1e5eb;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.rating-form form {
+  align-items: center;
+  background-color: white;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.rating-form form .row {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  margin: 1vh 0;
+  padding: 0;
+  width: 50%;
+}
+
+.rating-form form h1 {
+  color: black;
+  font-family: Epilogue , sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 25px;
+  text-align: center;
+}
+
 .rating-button:hover {
   cursor: pointer;
+}
+
+.input-email-rating, .input-text-rating {
+  background: white;
+  border: 1px solid #94979d;
+  color: black;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  padding: 7px;
+}
+
+.input-email-rating::placeholder, .input-text-rating::placeholder {
+  color: #94979d;
+  font-family: Epilogue , sans-serif;
+}
+
+.input-text-rating {
+  box-sizing: border-box;
+  width: 50%;
+}
+
+.input-email-rating {
+  width: 70%;
+}
+
+.rating-card {
+  align-items: flex-start;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2vh 0;
+  padding: 35px;
+}
+
+.rating-card-email {
+  background-color: red;
+  color: black;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
 }
