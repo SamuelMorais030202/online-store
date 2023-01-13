@@ -4,23 +4,32 @@ import PropTypes from 'prop-types';
 import './css/ProductCard.css';
 
 export default class ProductCard extends Component {
-  saveLocalStorage = () => {
-    const { data: { title, thumbnail, price, id } } = this.props;
-
-    const saveProduct = localStorage.getItem('saveProduct');
-
-    const arrayProduct = saveProduct ? JSON.parse(saveProduct) : [];
-    arrayProduct.push({ title, thumbnail, price, id, quantity: 1 });
-    localStorage.setItem('saveProduct', JSON.stringify(arrayProduct));
-  };
-
   render() {
-    const { data: { title, thumbnail, price, id } } = this.props;
+    const {
+      data: {
+        title,
+        thumbnail,
+        price,
+        id,
+        available_quantity: availableQuantity,
+        shipping: {
+          free_shipping: freeShipping,
+        },
+      },
+      saveLocalStorage,
+    } = this.props;
     return (
       <div>
         <div data-testid="product" className="product-card">
           <Link to={ `/product/${id}` } data-testid="product-detail-link">
-            <img src={ thumbnail } alt="Produto Imagem" className="product-card-image" />
+            {
+              freeShipping && <p data-testid="free-shipping">Frete Grátis</p>
+            }
+            <img
+              src={ thumbnail }
+              alt="Produto Imagem"
+              className="product-card-image"
+            />
             <p className="title-product">{ title }</p>
             <div className="row">
               <p className="real-symbol">
@@ -35,7 +44,11 @@ export default class ProductCard extends Component {
             type="button"
             data-testid="product-add-to-cart"
             className="button-add-cart"
-            onClick={ this.saveLocalStorage }
+            onClick={ () => {
+              saveLocalStorage({
+                title, thumbnail, price, id, availableQuantity,
+              });
+            } }
           >
             Adicionar ao Carrinho
           </button>
@@ -47,4 +60,5 @@ export default class ProductCard extends Component {
 
 ProductCard.propTypes = {
   data: PropTypes.shape().isRequired,
+  saveLocalStorage: PropTypes.func.isRequired,
 };

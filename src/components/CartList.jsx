@@ -16,8 +16,10 @@ export default class CartList extends Component {
     const { funcCalculate } = this.props;
     const savedProducts = JSON.parse(localStorage.getItem('saveProduct'));
     const prod = savedProducts.find((product) => product.id === id);
+    const { availableQuantity } = prod;
+    console.log(availableQuantity);
     if (value) {
-      prod.quantity += 1;
+      if (prod.quantity < availableQuantity) prod.quantity += 1;
     } else if (prod.quantity > 1) {
       prod.quantity -= 1;
     }

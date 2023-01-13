@@ -6,8 +6,12 @@
   width: 400px;
 }
 
-.category-item label {
+.category-tile {
+  align-items: center;
   display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  margin: 15px 0;
 }
 
 .container-item-categories h1 {

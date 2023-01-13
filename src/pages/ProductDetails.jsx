@@ -13,22 +13,28 @@ export default class ProductDetails extends Component {
     productData: {},
     description: '',
     quantity: 1,
+    cartQuantity: 0,
   };
 
   async componentDidMount() {
     const { match: { params: { id } } } = this.props;
+    const saveProduct = localStorage.getItem('saveProduct');
+    const arrayProduct = saveProduct ? JSON.parse(saveProduct) : [];
     this.setState({
       productData: await getProductById(id),
       description: await getProductDescription(id),
+      cartQuantity: arrayProduct.reduce((a, c) => a + c.quantity, 0),
     });
   }
 
   handleClick = () => {
     const { history } = this.props;
-    const { productData: { title, price, thumbnail, id } } = this.state;
+    const {
+      productData: { title, price, thumbnail, id, available_quantity: availableQuantity },
+    } = this.state;
     const saveProduct = localStorage.getItem('saveProduct');
     const arrayProduct = saveProduct ? JSON.parse(saveProduct) : [];
-    arrayProduct.push({ title, thumbnail, price, id, quantity: 1 });
+    arrayProduct.push({ title, thumbnail, price, id, quantity: 1, availableQuantity });
     localStorage.setItem('saveProduct', JSON.stringify(arrayProduct));
     history.push('/cartshop');
   };
@@ -38,11 +44,12 @@ export default class ProductDetails extends Component {
       productData: { title, price, pictures },
       quantity,
       description,
+      cartQuantity,
     } = this.state;
     const { match: { params: { id } } } = this.props;
     return (
       <div className="product-details">
-        <Header />
+        <Header cartQuantity={ cartQuantity } />
         <div className="product-resume">
           <Link to="/" className="cart-voltar">
             <button type="button" className="back-button">

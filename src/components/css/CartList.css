@@ -30,6 +30,12 @@
   width: 90%;
 }
 
+.cart-tile img {
+  margin: 0 1vw;
+  max-height: 10vh;
+  width: 20%;
+}
+
 .button-delete img {
   height: 13px;
   width: 13px;
