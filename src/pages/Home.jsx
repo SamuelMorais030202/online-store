@@ -5,11 +5,10 @@ import './css/Home.css';
 import {
   getProductsFromCategoryAndQuery,
   getProductByCategory,
-  getProductsDetailsById,
 } from '../services/api';
 import ProductCard from '../components/ProductCard';
 
-const MAX_REQ_API = 20;
+// const MAX_REQ_API = 20;
 
 export default class Home extends Component {
   state = {
@@ -26,40 +25,39 @@ export default class Home extends Component {
     });
   }
 
-  compare = (a, b) => {
-    const numMin = -1;
-    if (a.title < b.title) {
-      return numMin;
-    }
-    if (a.title > b.title) {
-      return 1;
-    }
-    return 0;
-  };
+  // compare = (a, b) => {
+  //   const numMin = -1;
+  //   if (a.title < b.title) {
+  //     return numMin;
+  //   }
+  //   if (a.title > b.title) {
+  //     return 1;
+  //   }
+  //   return 0;
+  // };
 
-  searchProductDetail = async (results) => {
-    const arrayPromises = [];
-    for (let index = 0; index < (results.length / MAX_REQ_API); index += 1) {
-      const promise = new Promise((resolve, reject) => {
-        const min = index * MAX_REQ_API;
-        const max = MAX_REQ_API + (MAX_REQ_API * index);
-        const arrayProd = results
-          .map((e) => e.id).slice(min, max);
-        getProductsDetailsById(arrayProd)
-          .then((value) => resolve(value))
-          .catch((error) => reject(Error(error.message)));
-      });
-      arrayPromises.push(promise);
-    }
-    const response = await Promise.all(arrayPromises);
-    const productsFiltered = [
-      ...response[0],
-      ...response[1],
-      ...response[2],
-    ].map((e) => e.body);
-    productsFiltered.sort(this.compare);
-    return productsFiltered;
-  };
+  // searchProductDetail = async (results) => {
+  //   const arrayPromises = [];
+  //   for (let index = 0; index < (results.length / MAX_REQ_API); index += 1) {
+  //     const promise = new Promise((resolve) => {
+  //       const min = index * MAX_REQ_API;
+  //       const max = MAX_REQ_API + (MAX_REQ_API * index);
+  //       const arrayProd = results
+  //         .map((e) => e.id).slice(min, max);
+  //       getProductsDetailsById(arrayProd)
+  //         .then((value) => resolve(value));
+  //     });
+  //     arrayPromises.push(promise);
+  //   }
+  //   const response = await Promise.all(arrayPromises);
+  //   const productsFiltered = [
+  //     ...response[0],
+  //     ...response[1],
+  //     ...response[2],
+  //   ].map((e) => e.body);
+  //   // productsFiltered.sort(this.compare);
+  //   return productsFiltered;
+  // };
 
   handleSearch = async (textSearch) => {
     const { categorySelected } = this.state;
@@ -67,9 +65,14 @@ export default class Home extends Component {
       categorySelected,
       textSearch,
     );
-    const productsFiltered = await this.searchProductDetail(results);
+    // let productsFiltered = '';
+    // if (results.length > 0) {
+    //   productsFiltered = await this.searchProductDetail(results);
+    // } else {
+    //   productsFiltered = [];
+    // }
     this.setState({
-      productsFiltered,
+      productsFiltered: [...results],
     });
   };
 
@@ -78,19 +81,19 @@ export default class Home extends Component {
       categorySelected: categoryId,
     });
     const { results } = await getProductByCategory(categoryId);
-    const productsFiltered = await this.searchProductDetail(results);
+    // const productsFiltered = await this.searchProductDetail(results);
     this.setState({
-      productsFiltered,
+      productsFiltered: [...results],
     });
   };
 
   addProdToCart = (product) => {
-    const { title, pictures, price, id } = product;
+    const { title, thumbnail, price, id } = product;
     const saveProduct = localStorage.getItem('saveProduct');
     const arrayProduct = saveProduct ? JSON.parse(saveProduct) : [];
     const productFiltered = arrayProduct.find((prod) => prod.id === id);
     if (arrayProduct.length === 0 || !productFiltered) {
-      arrayProduct.push({ title, thumbnail: pictures[0].url, price, id, quantity: 1 });
+      arrayProduct.push({ title, thumbnail, price, id, quantity: 1 });
     } else {
       productFiltered.quantity += 1;
     }

@@ -43,7 +43,9 @@ export default class Header extends Component {
         </Link>
         <Link to="/cartshop" className="cart-link" data-testid="shopping-cart-button">
           <img src={ cartImage } alt="Cart-Icon" />
-          <p className="cart-quantity">{ cartQuantity }</p>
+          <p className="cart-quantity" data-testid="shopping-cart-size">
+            { cartQuantity }
+          </p>
         </Link>
       </header>
     );

@@ -5,13 +5,13 @@ import './css/ProductCard.css';
 
 export default class ProductCard extends Component {
   render() {
-    const { data: { title, pictures, price, id }, saveLocalStorage } = this.props;
+    const { data: { title, thumbnail, price, id }, saveLocalStorage } = this.props;
     return (
       <div>
         <div data-testid="product" className="product-card">
           <Link to={ `/product/${id}` } data-testid="product-detail-link">
             <img
-              src={ pictures[0].url }
+              src={ thumbnail }
               alt="Produto Imagem"
               className="product-card-image"
             />
@@ -29,7 +29,7 @@ export default class ProductCard extends Component {
             type="button"
             data-testid="product-add-to-cart"
             className="button-add-cart"
-            onClick={ () => { saveLocalStorage({ title, pictures, price, id }); } }
+            onClick={ () => { saveLocalStorage({ title, thumbnail, price, id }); } }
           >
             Adicionar ao Carrinho
           </button>
