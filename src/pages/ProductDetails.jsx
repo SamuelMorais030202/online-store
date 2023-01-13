@@ -29,10 +29,12 @@ export default class ProductDetails extends Component {
 
   handleClick = () => {
     const { history } = this.props;
-    const { productData: { title, price, thumbnail, id } } = this.state;
+    const {
+      productData: { title, price, thumbnail, id, available_quantity: availableQuantity },
+    } = this.state;
     const saveProduct = localStorage.getItem('saveProduct');
     const arrayProduct = saveProduct ? JSON.parse(saveProduct) : [];
-    arrayProduct.push({ title, thumbnail, price, id, quantity: 1 });
+    arrayProduct.push({ title, thumbnail, price, id, quantity: 1, availableQuantity });
     localStorage.setItem('saveProduct', JSON.stringify(arrayProduct));
     history.push('/cartshop');
   };

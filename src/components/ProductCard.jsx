@@ -5,7 +5,12 @@ import './css/ProductCard.css';
 
 export default class ProductCard extends Component {
   render() {
-    const { data: { title, thumbnail, price, id }, saveLocalStorage } = this.props;
+    const {
+      data: {
+        title, thumbnail, price, id, available_quantity: availableQuantity,
+      },
+      saveLocalStorage,
+    } = this.props;
     return (
       <div>
         <div data-testid="product" className="product-card">
@@ -29,7 +34,11 @@ export default class ProductCard extends Component {
             type="button"
             data-testid="product-add-to-cart"
             className="button-add-cart"
-            onClick={ () => { saveLocalStorage({ title, thumbnail, price, id }); } }
+            onClick={ () => {
+              saveLocalStorage({
+                title, thumbnail, price, id, availableQuantity,
+              });
+            } }
           >
             Adicionar ao Carrinho
           </button>

@@ -26,15 +26,15 @@ export default class CartShop extends Component {
 
   calculateTotal = (productList) => {
     let currentTotal = 0;
-
     productList.forEach(({ quantity, price }) => {
       currentTotal = Math.round(((quantity * price) + currentTotal) * 100) / 100;
     });
-
+    const receiveData = localStorage.getItem('saveProduct');
+    const arrayProduct = receiveData ? JSON.parse(receiveData) : [];
     this.setState({
       total: (currentTotal).toFixed(2),
+      cartQuantity: arrayProduct.reduce((a, c) => a + c.quantity, 0),
     });
-
     localStorage.setItem('totalBuy', currentTotal);
   };
 
