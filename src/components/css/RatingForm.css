@@ -15,6 +15,13 @@
   padding: 30px;
 }
 
+.rating-card .row {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
 .rating-form form .row {
   box-sizing: border-box;
   display: flex;
@@ -74,12 +81,21 @@
   padding: 35px;
 }
 
+.rating-card p {
+  color: #94979d;
+  font-family: Epilogue , sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+}
+
 .rating-card-email {
-  background-color: red;
   color: black;
   font-family: Epilogue , sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: 20px;
+  margin-right: 35px;
 }
