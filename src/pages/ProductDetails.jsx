@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getProductById } from '../services/api';
 import Header from '../components/Header';
+import RatingForm from '../components/RatingForm';
+import CategoriesFilter from '../components/CategoriesFilter';
+import ProductCard from '../components/ProductCard';
 
 export default class ProductDetails extends Component {
   state = {
@@ -26,10 +29,16 @@ export default class ProductDetails extends Component {
   };
 
   render() {
-    const { productData: { title, price, thumbnail } } = this.state;
+    const { productData: { title, price, thumbnail }, productData } = this.state;
+    const { match: { params: { id } } } = this.props;
     return (
-      <div>
+      <div className="product-details">
         <Header />
+        <CategoriesFilter
+          handleChangeCategory={ () => {} }
+        />
+        <ProductCard data={ productData } />
+        <ProductCard data={ productData } />
         <p data-testid="product-detail-name">{ title }</p>
         <img data-testid="product-detail-image" src={ thumbnail } alt={ title } />
         <p data-testid="product-detail-price">
@@ -43,6 +52,7 @@ export default class ProductDetails extends Component {
         >
           Adicionar ao Carrinho
         </button>
+        <RatingForm id={ id } />
       </div>
     );
   }

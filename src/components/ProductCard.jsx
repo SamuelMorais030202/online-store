@@ -18,7 +18,7 @@ export default class ProductCard extends Component {
     const { data: { title, thumbnail, price, id } } = this.props;
     return (
       <div>
-        <Link to={ `/product-details/${id}` } data-testid="product-detail-link">
+        <Link to={ `/product/${id}` } data-testid="product-detail-link">
           <div data-testid="product" className="product-card">
             <img src={ thumbnail } alt="Produto Imagem" />
             <p className="title-product">{ title }</p>
