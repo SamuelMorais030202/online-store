@@ -19,7 +19,7 @@ export default class Header extends Component {
 
   render() {
     const { query } = this.state;
-    const { handleSearch } = this.props;
+    const { handleSearch, cartQuantity } = this.props;
     return (
       <header className="header-search">
         <div className="search-box">
@@ -43,6 +43,7 @@ export default class Header extends Component {
         </Link>
         <Link to="/cartshop" className="cart-link" data-testid="shopping-cart-button">
           <img src={ cartImage } alt="Cart-Icon" />
+          <p className="cart-quantity">{ cartQuantity }</p>
         </Link>
       </header>
     );
@@ -54,5 +55,6 @@ Header.defaultProps = {
 };
 
 Header.propTypes = {
+  cartQuantity: PropTypes.number.isRequired,
   handleSearch: PropTypes.func,
 };

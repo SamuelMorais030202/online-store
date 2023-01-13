@@ -14,10 +14,17 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
 }
 
 export async function getProductById(productId) {
-  const URL = ` https://api.mercadolibre.com/items/${productId}`;
-  const API = await fetch(URL);
-  const dataProduct = API.json();
+  const URL = `https://api.mercadolibre.com/items/${productId}`;
+  const response = await fetch(URL);
+  const dataProduct = response.json();
   return dataProduct;
+}
+
+export async function getProductsDetailsById(productsId) {
+  const url = `https://api.mercadolibre.com/items?ids=${productsId.join(',')}`;
+  const response = await fetch(url);
+  const datasProducts = response.json();
+  return datasProducts;
 }
 
 export async function getProductByCategory(categoryId) {

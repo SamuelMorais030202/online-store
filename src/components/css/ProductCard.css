@@ -19,7 +19,9 @@
 }
 
 .product-card-image {
+  height: 30vh;
   margin: 0 auto;
+  object-fit: contain;
   width: 90%;
 }
 

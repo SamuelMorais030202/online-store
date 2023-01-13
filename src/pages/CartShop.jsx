@@ -9,12 +9,15 @@ export default class CartShop extends Component {
   state = {
     savedProduct: [],
     total: 0,
+    cartQuantity: 0,
   };
 
   componentDidMount() {
     const receiveData = localStorage.getItem('saveProduct');
+    const arrayProduct = receiveData ? JSON.parse(receiveData) : [];
     this.setState({
-      savedProduct: receiveData ? JSON.parse(receiveData) : [],
+      savedProduct: arrayProduct,
+      cartQuantity: arrayProduct.reduce((a, c) => a + c.quantity, 0),
     }, () => {
       const { savedProduct } = this.state;
       this.calculateTotal(savedProduct);
@@ -36,10 +39,10 @@ export default class CartShop extends Component {
   };
 
   render() {
-    const { savedProduct, total } = this.state;
+    const { savedProduct, total, cartQuantity } = this.state;
     return (
       <div className="cart-shop">
-        <Header />
+        <Header cartQuantity={ cartQuantity } />
         <div className="cart-resume">
           <Link to="/" className="cart-voltar">
             <button type="button" className="back-button">

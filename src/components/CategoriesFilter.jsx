@@ -26,8 +26,11 @@ export default class CategoriesFilter extends React.Component {
         <hr />
         {categories.map((item) => (
           <div key={ item.id } className="category-item">
-            <label data-testid="category" htmlFor={ item.id }>
-              <p>{item.name}</p>
+            <label
+              data-testid="category"
+              htmlFor={ item.id }
+              className="category-tile"
+            >
               <input
                 type="radio"
                 name="categories-filter"
@@ -37,6 +40,7 @@ export default class CategoriesFilter extends React.Component {
                   handleChangeCategory(item.id);
                 } }
               />
+              {item.name}
             </label>
           </div>
         ))}
