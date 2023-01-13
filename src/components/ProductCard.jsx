@@ -18,9 +18,9 @@ export default class ProductCard extends Component {
     const { data: { title, thumbnail, price, id } } = this.props;
     return (
       <div>
-        <Link to={ `/product/${id}` } data-testid="product-detail-link">
-          <div data-testid="product" className="product-card">
-            <img src={ thumbnail } alt="Produto Imagem" />
+        <div data-testid="product" className="product-card">
+          <Link to={ `/product/${id}` } data-testid="product-detail-link">
+            <img src={ thumbnail } alt="Produto Imagem" className="product-card-image" />
             <p className="title-product">{ title }</p>
             <div className="row">
               <p className="real-symbol">
@@ -30,18 +30,17 @@ export default class ProductCard extends Component {
                 { ((Math.round(price * 100) / 100).toFixed(2)).replace('.', ',') }
               </p>
             </div>
-          </div>
-        </Link>
-        <button
-          type="button"
-          data-testid="product-add-to-cart"
-          className="button-add-cart"
-          onClick={ this.saveLocalStorage }
-        >
-          Adicionar ao Carrinho
-        </button>
+          </Link>
+          <button
+            type="button"
+            data-testid="product-add-to-cart"
+            className="button-add-cart"
+            onClick={ this.saveLocalStorage }
+          >
+            Adicionar ao Carrinho
+          </button>
+        </div>
       </div>
-
     );
   }
 }

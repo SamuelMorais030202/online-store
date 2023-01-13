@@ -1,0 +1,89 @@
+.product-details {
+  background-color: whitesmoke;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.product-resume {
+  box-sizing: border-box;
+  display: flex;
+  min-height: 80vh;
+  position: relative;
+  width: 100%;
+}
+
+.product-image-container {
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  margin: 6vh 5vw;
+  padding: 35px;
+  text-align: center;
+  width: 55%;
+}
+
+.product-image-container img {
+  width: 60%;
+}
+
+.product-info-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.product-info-container h1 {
+  color: black;
+  font-family: Epilogue , sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 25px;
+  margin-left: 4vw;
+  margin-top: 6vh;
+}
+
+.product-description {
+  color: #94979d;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  height: 100%;
+  line-height: 18px;
+  margin: 0 4vw;
+  text-align: justify;
+  white-space: pre-wrap;
+  word-spacing: 5px;
+}
+
+.product-info-container .row {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 10vw 5vh;
+  width: 70%;
+}
+
+.product-detail-price {
+  color: #444955;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
