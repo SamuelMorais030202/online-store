@@ -39,7 +39,6 @@ export default class ProductDetails extends Component {
       quantity,
       description,
     } = this.state;
-    console.log(description);
     const { match: { params: { id } } } = this.props;
     return (
       <div className="product-details">

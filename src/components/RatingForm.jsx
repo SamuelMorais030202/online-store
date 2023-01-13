@@ -143,17 +143,23 @@ export default class RatingForm extends Component {
                   >
                     { rate.email }
                   </h1>
-                  {
-                    this.RATINGS.map((value) => (
-                      <img
-                        key={ `rated-value-${value}` }
-                        src={
-                          value.toString() >= rate.rating ? ratingImgFalse : ratingImgTrue
-                        }
-                        alt="Rating"
-                      />
-                    ))
-                  }
+                  <div
+                    data-testid="review-card-rating"
+                  >
+                    {
+                      this.RATINGS.map((value) => (
+                        <img
+                          key={ `rated-value-${value}` }
+                          src={
+                            value.toString() >= rate.rating ? (
+                              ratingImgFalse
+                            ) : ratingImgTrue
+                          }
+                          alt="Rating"
+                        />
+                      ))
+                    }
+                  </div>
                 </div>
                 <p data-testid="review-card-evaluation">{ rate.text }</p>
               </div>
