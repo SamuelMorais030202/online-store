@@ -73,7 +73,7 @@ export default class ProductDetails extends Component {
                 className="product-detail-price"
               >
                 R$
-                {((Math.round(price * 100) / 100).toFixed(2)).replace('.', ',')}
+                { price }
               </p>
               <QuantityControl
                 updateQuantity={ (bool) => {
